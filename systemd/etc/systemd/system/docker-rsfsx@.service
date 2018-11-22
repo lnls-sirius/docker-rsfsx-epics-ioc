@@ -1,0 +1,19 @@
+[Unit]
+Description=RSFSX container instance %I
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+RestartSec=2
+EnvironmentFile=/etc/sysconfig/docker-rsfsx-epics-ioc
+EnvironmentFile=/etc/sysconfig/docker-rsfsx-epics-ioc-mapping
+Environment=IMAGE_VERSION=debian-9
+# Used inside runDockerRSFSX script
+Environment=RSFSX_INSTANCE=%i
+ExecStartPre=-/usr/bin/docker pull lnlsdig/rsfsx-epics-ioc:${IMAGE_VERSION}
+ExecStart=/usr/local/bin/runDockerRSFSx.sh
+ExecStop=/usr/local/bin/stopDockerRSFSx.sh
+
+[Install]
+WantedBy=multi-user.target
