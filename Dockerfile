@@ -1,4 +1,4 @@
-FROM lnls/epics-dist:base-3.15-synapps-lnls-R1-0-0-debian-9.5
+FROM lnls/epics-dist:base-3.15-synapps-lnls-R1-2-1-debian-9.5
 
 ENV IOC_REPO rsfsx-epics-ioc
 ENV BOOT_DIR iocrsfsx
@@ -8,11 +8,11 @@ RUN git clone https://github.com/lnls-dig/${IOC_REPO}.git /opt/epics/${IOC_REPO}
     cd /opt/epics/${IOC_REPO} && \
     git checkout ${COMMIT} && \
     sed -i -e 's|^EPICS_BASE=.*$|EPICS_BASE=/opt/epics/base|' configure/RELEASE && \
-    sed -i -e 's|^SUPPORT=.*$|SUPPORT=/opt/epics/synApps-lnls-R1-0-0/support|' configure/RELEASE && \
-    sed -i -e 's|^STREAM=.*$|STREAM=$(SUPPORT)/stream-R2-7-7|' configure/RELEASE && \
+    sed -i -e 's|^SUPPORT=.*$|SUPPORT=/opt/epics/synApps-lnls-R1-2-1/support|' configure/RELEASE && \
+    sed -i -e 's|^STREAM=.*$|STREAM=$(SUPPORT)/stream-R2-8-8/StreamDevice-2-8-8|' configure/RELEASE && \
     sed -i -e 's|^SNCSEQ=.*$|SNCSEQ=$(SUPPORT)/seq-2-2-6|' configure/RELEASE && \
-    sed -i -e 's|^CALC=.*$|CALC=$(SUPPORT)/calc-R3-7|' configure/RELEASE && \
-    sed -i -e 's|^ASYN=.*$|ASYN=$(SUPPORT)/asyn-R4-33|' configure/RELEASE && \
+    sed -i -e 's|^CALC=.*$|CALC=$(SUPPORT)/calc-R3-7-2|' configure/RELEASE && \
+    sed -i -e 's|^ASYN=.*$|ASYN=$(SUPPORT)/asyn-R4-35|' configure/RELEASE && \
     sed -i -e 's|^AUTOSAVE=.*$|AUTOSAVE=$(SUPPORT)/autosave-R5-9|' configure/RELEASE && \
     make && \
     make install && \
