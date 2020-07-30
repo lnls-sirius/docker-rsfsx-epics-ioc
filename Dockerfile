@@ -2,7 +2,7 @@ FROM lnls/epics-dist:base-3.15-synapps-lnls-R1-2-1-debian-9.5
 
 ENV IOC_REPO rsfsx-epics-ioc
 ENV BOOT_DIR iocrsfsx
-ENV COMMIT v3.1.0-rc2
+ENV COMMIT v3.1.0
 
 RUN git clone https://github.com/lnls-dig/${IOC_REPO}.git /opt/epics/${IOC_REPO} && \
     cd /opt/epics/${IOC_REPO} && \
